@@ -15,7 +15,7 @@ function AuthForm(props) {
         <p>Password</p>
         <input type="text" ref={password_ref} />
         {/* submit button */}
-        <input type="submit" onClick={(event) => {
+        <input value="SUBMIT" type="submit" onClick={(event) => {
             event.preventDefault();
             props.auth(props.header,email_ref.current.value,password_ref.current.value);
         }} />
