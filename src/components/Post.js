@@ -12,10 +12,28 @@ function Post(props) {
 
     // get the post
     const post = props.post;
+    // array of post image tags
+    const image_tags = props.post.image_urls.map((url) => <img src={url} />);
+    // post current image index
+    const [image_index,setImageIndex] = useState(0);
 
     return <div className='post-container'>
+        {/* post title */}
         <h1>{ post.name }</h1>
-        { post.image_urls.map((image,i) => <img key={i} src={image} />) }
+        {/* previous image button */}
+        <button onClick={() => {
+            if (image_index !== 0) {
+                setImageIndex(image_index-1);
+            }
+        }}>PREV</button>
+        {/* next image button */}
+        <button onClick={() => {
+            if (image_index !== image_tags.length-1) {
+                setImageIndex(image_index+1);
+            }
+        }}>NEXT</button>
+        {/* current image */}
+        { image_tags[image_index] }
     </div>
 }
 // // default values for props if no data is given
