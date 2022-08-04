@@ -62,3 +62,15 @@ body {
     border: none;
     cursor: pointer;
 }
+
+/* ALL POSTS */
+.all-posts {
+    display: grid;
+    gap: 50px;
+    border: 2px solid white;
+}
+
+/* POST CONTAINER */
+.post-container img {
+    max-width: 80%;
+}
