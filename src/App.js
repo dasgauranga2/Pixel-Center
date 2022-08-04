@@ -4,6 +4,7 @@ import { BrowserRouter,Routes,Route,Link }  from 'react-router-dom';
 // import the components
 import AuthForm from './components/AuthForm';
 import Home from './components/Home';
+import Upload from './components/Upload';
 import { auth } from './firebase-config';
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
 
 			{/* route for home page */}
 			<Route exact path='/' element={<Home />} />
+
+			{/* route for post upload */}
+			<Route exact path='/upload' element={<Upload />} />
 		</Routes>
 		
 	</BrowserRouter>
