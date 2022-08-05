@@ -33,8 +33,12 @@ function Upload(props) {
 		}
 	});
 
+    // set background color
+    document.body.style.background = 'rgb(35,210,20)';
+
     return <form className='upload-form'>
-        <input type="text" ref={name_ref} />
+        <h2>UPLOAD POST</h2>
+        <input type="text" placeholder='Post Name' ref={name_ref} />
         <input multiple type="file" ref={image_ref} />
         <input value="UPLOAD" type="submit" onClick={(event) => {
             event.preventDefault();
@@ -62,6 +66,9 @@ function Upload(props) {
                         });
                 });
             });
+
+            // after upload go to home page
+			navigate('/');
             
         }} />
     </form>
