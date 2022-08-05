@@ -20,12 +20,33 @@ body {
 }
 
 /* AUTHENTICATION FORM */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    margin: 50px auto;
+    /* border: 2px solid black; */
+}
+
+.auth-container > a {
+    text-decoration: none;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: rgb(80, 80, 225);
+    background-color: white;
+    font-size: 1.35rem;
+    border: none;
+}
+
 .auth-form {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin: 100px auto;
-    width: 450px;
+    margin: 15px auto;
+    width: 100%;
     background: white;
     border-radius: 15px;
     border: 2px solid white;
@@ -169,8 +190,8 @@ body {
 /* MEDIA QUERIES */
 /* FOR SMARTPHONES */
 @media(max-width:500px) {
-
-    .auth-form {
+    
+    .auth-container {
         width: 80%;
     }
 

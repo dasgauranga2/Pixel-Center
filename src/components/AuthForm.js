@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef,useState } from 'react';
 import PropTypes from 'prop-types';
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged } from 'firebase/auth';
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
 import { ref as d_ref,set,push } from 'firebase/database';
 import { auth,db } from '../firebase-config';
-import { useNavigate }  from 'react-router-dom';
+import { useNavigate,Link }  from 'react-router-dom';
 
 // create a functional component
 // the component takes the props as parameter
@@ -61,29 +61,35 @@ function AuthForm(props) {
     document.body.style.background = 'rgb(100,140,240)';
 
     if (props.header === "SIGNIN") {
-        return <form className='auth-form'>
-            <h2>{props.header}</h2>
-            <input type="text" placeholder='Email' ref={email_ref} />
-            <input type="text" placeholder='Password' ref={password_ref} />
-            {/* submit button */}
-            <input value="LOGIN USER" type="submit" onClick={(event) => {
-                event.preventDefault();
-                auth_user(props.header,email_ref.current.value,password_ref.current.value);
-            }} />
-        </form>
+        return <div className='auth-container'>
+            <Link to='/signup'>SIGNUP</Link>
+            <form className='auth-form'>
+                <h2>{props.header}</h2>
+                <input key="signin-email" type="text" placeholder='Email' ref={email_ref} />
+                <input key="signin-password" type="text" placeholder='Password' ref={password_ref} />
+                {/* submit button */}
+                <input key="signin-submit" value="LOGIN USER" type="submit" onClick={(event) => {
+                    event.preventDefault();
+                    auth_user(props.header,email_ref.current.value,password_ref.current.value);
+                }} />
+            </form>
+        </div> 
     }
     else if (props.header === "SIGNUP") {
-        return <form className='auth-form'>
-            <h2>{props.header}</h2>
-            <input type="text" placeholder='Email' ref={email_ref} />
-            <input type="text" placeholder='Password' ref={password_ref} />
-            <input type="text" placeholder='Name' ref={name_ref} />
-            {/* submit button */}
-            <input value="CREATE USER" type="submit" onClick={(event) => {
-                event.preventDefault();
-                auth_user(props.header,email_ref.current.value,password_ref.current.value,name_ref.current.value);
-            }} />
-        </form>
+        return <div className='auth-container'>
+            <Link to='/signin'>SIGNIN</Link>
+            <form className='auth-form'>
+                <h2>{props.header}</h2>
+                <input key="signup-email" type="text" placeholder='Email' ref={email_ref} />
+                <input key="signup-password" type="text" placeholder='Password' ref={password_ref} />
+                <input key="signup-name" type="text" placeholder='Name' ref={name_ref} />
+                {/* submit button */}
+                <input key="signup-submit" value="CREATE USER" type="submit" onClick={(event) => {
+                    event.preventDefault();
+                    auth_user(props.header,email_ref.current.value,password_ref.current.value,name_ref.current.value);
+                }} />
+            </form>
+        </div> 
     }
 }
 
