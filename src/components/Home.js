@@ -40,17 +40,20 @@ function Home(props) {
         const database_ref = d_ref(db,"POSTS/");
         // get posts data
         onValue(database_ref, (snapshot) => {
-            // array of posts
-            const posts_array = [];
-            // get each user's posts
-            Object.values(snapshot.val()).forEach((user_post) => {
-                // get each post
-                Object.values(user_post).forEach((post) => {
-                    posts_array.push(post);
-                    console.log(posts_array);
-                    setPosts(posts_array);
+            // check if data exists
+            if (!snapshot.val() === null && !snapshot.val() === undefined) {
+                // array of posts
+                const posts_array = [];
+                // get each user's posts
+                Object.values(snapshot.val()).forEach((user_post) => {
+                    // get each post
+                    Object.values(user_post).forEach((post) => {
+                        posts_array.push(post);
+                        console.log(posts_array);
+                        setPosts(posts_array);
+                    });
                 });
-            });
+            }
         });
     },[]);
 
