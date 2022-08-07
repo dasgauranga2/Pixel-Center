@@ -20,6 +20,8 @@ function Profile(props) {
     const [profile_image, setProfileImage] = useState("https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png");
     // ref for user name
 	const name_ref = useRef(null);
+    // timer to detect when user stops typing
+    let timer = null;
     // all posts
     const [posts, setPosts] = useState([]);
 
@@ -91,7 +93,18 @@ function Profile(props) {
             
         }}/>
         {/* user profile name */}
-        <input type="text" ref={name_ref} />
+        <input type="text" ref={name_ref} onChange={(event) => {
+            // use a timer to detect when user stops typing
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                // get firebase database reference
+                const database_ref = d_ref(db,`USERS/${current_user.uid}`);
+                // set user profile name
+                update(database_ref, {
+                    name: name_ref.current.value
+                });
+            },1500);
+        }} />
         {/* user email */}
         <p>{ current_user===null ? "" : current_user.email }</p>
         {/* <div className='all-posts'>
