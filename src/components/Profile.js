@@ -1,9 +1,10 @@
 import React, { useState,useEffect,useRef } from 'react';
 import { getAuth,signOut,onAuthStateChanged } from 'firebase/auth';
-import { ref as d_ref,onValue } from 'firebase/database';
+import { ref as d_ref,onValue,set,update } from 'firebase/database';
+import { ref as s_ref,uploadBytes,getDownloadURL } from 'firebase/storage';
 import { useNavigate }  from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { auth,db } from '../firebase-config';
+import { auth,db,storage } from '../firebase-config';
 // import the components
 import Post from '../components/Post';
 
@@ -15,7 +16,9 @@ function Profile(props) {
     const navigate = useNavigate();
     // current user state
     const [current_user, setCurrentUser] = useState(null);
-    // it can be used to access dom elements
+    // user profile image state
+    const [profile_image, setProfileImage] = useState("https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png");
+    // ref for user name
 	const name_ref = useRef(null);
     // all posts
     const [posts, setPosts] = useState([]);
@@ -47,6 +50,9 @@ function Profile(props) {
                 if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
                     // set user name
                     name_ref.current.value = snapshot.val().name;
+                    // set user profile image
+                    setProfileImage(snapshot.val().image_url);
+                    //console.log();
                 }
             });
         }
@@ -54,9 +60,37 @@ function Profile(props) {
 
     return <div className='profile-container'>
         <h1>USER PROFILE</h1>
-        <img src='https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png' />
-        <input type="file" id="upload_file" />
+        {/* user profile image */}
+        <img src={profile_image} />
+        {/* user profile image upload */}
+        <input type="file" onChange={(event) => {
+            // get the image file
+            const image_file = event.target.files[0];
+            
+            // check for valid image file
+            if(!(image_file===null) || !(image_file===undefined)) {
+                // get firebase database reference
+                const database_ref = d_ref(db,`USERS/${current_user.uid}`);
+                // get firebase storage reference
+                const storage_ref = s_ref(storage,`PROFILE/${current_user.uid}/${image_file.name}`);
+                
+                // upload the image file
+                uploadBytes(storage_ref,image_file).then((snapshot) => {
+                    // get the download url
+                    getDownloadURL(storage_ref)
+                        .then((url) => {
+                            // set user profile image url
+                            update(database_ref, {
+                                image_url: url
+                            });
+                        });
+                });
+            }
+            
+        }}/>
+        {/* user profile name */}
         <input type="text" ref={name_ref} />
+        {/* user email */}
         <p>{ current_user===null ? "" : current_user.email }</p>
         {/* <div className='all-posts'>
             { posts.map((post) => <Post key={post.name} post={post} />) }
