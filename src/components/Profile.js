@@ -50,9 +50,11 @@ function Profile(props) {
                 if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
                     // set user name
                     name_ref.current.value = snapshot.val().name;
-                    // set user profile image
-                    setProfileImage(snapshot.val().image_url);
-                    //console.log();
+                    // check if user profile image exists
+                    if (snapshot.val().hasOwnProperty('image_url')) {
+                        // set user profile image
+                        setProfileImage(snapshot.val().image_url);
+                    }
                 }
             });
         }
@@ -66,7 +68,7 @@ function Profile(props) {
         <input type="file" onChange={(event) => {
             // get the image file
             const image_file = event.target.files[0];
-            
+
             // check for valid image file
             if(!(image_file===null) || !(image_file===undefined)) {
                 // get firebase database reference
