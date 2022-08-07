@@ -67,8 +67,8 @@ function Upload(props) {
                 });
             });
 
-            // after upload go to home page
-			navigate('/');
+            // // after upload go to home page
+			// navigate('/');
             
         }} />
     </form>

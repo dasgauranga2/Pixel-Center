@@ -200,13 +200,13 @@ body {
 .profile-container input[type='text'] {
     grid-area: name;
     font-family: 'Roboto Mono', monospace;
-    width: fit-content;
+    width: 100%;
     background: transparent;
     color: white;
     outline: none;
     font-size: 1.6rem;
     color: black;
-    border: 2px solid red;
+    border: none;
 }
 
 .profile-container p {

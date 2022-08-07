@@ -103,7 +103,7 @@ function Profile(props) {
                 update(database_ref, {
                     name: name_ref.current.value
                 });
-            },1500);
+            },2000);
         }} />
         {/* user email */}
         <p>{ current_user===null ? "" : current_user.email }</p>
