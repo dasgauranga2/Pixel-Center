@@ -25,13 +25,13 @@ function Post(props) {
             if (image_index !== 0) {
                 setImageIndex(image_index-1);
             }
-        }}>PREV</button>
+        }}>&#10148;</button>
         {/* next image button */}
         <button onClick={() => {
             if (image_index !== image_tags.length-1) {
                 setImageIndex(image_index+1);
             }
-        }}>NEXT</button>
+        }}>&#10148;</button>
         {/* current image */}
         { image_tags[image_index] }
     </div>

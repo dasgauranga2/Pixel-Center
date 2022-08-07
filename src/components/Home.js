@@ -41,7 +41,7 @@ function Home(props) {
         // get posts data
         onValue(database_ref, (snapshot) => {
             // check if data exists
-            if (!snapshot.val() === null && !snapshot.val() === undefined) {
+            if (!(snapshot.val() === null) && !(snapshot.val() === undefined)) {
                 // array of posts
                 const posts_array = [];
                 // get each user's posts
