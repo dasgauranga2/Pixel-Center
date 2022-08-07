@@ -1,5 +1,5 @@
 /* import google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
 
 * {
@@ -151,6 +151,70 @@ body {
     border: 2px solid rgb(80, 80, 225);
 }
 
+/* PROFILE */
+.profile-container {
+    display: grid;
+    grid-template-areas: 
+    'header header'
+    'image upload'
+    'name name'
+    'email email';
+    width: 80%;
+    margin: 100px auto;
+    row-gap: 10px;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 2px solid white;
+}
+
+.profile-container  h1 {
+    grid-area: header;
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: blue;
+    /* border: 2px solid white; */
+}
+
+.profile-container img {
+    grid-area: image;
+    width: 100px;
+    border-radius: 50%;
+    /* border: 4px solid black; */
+}
+
+.profile-container input[type='file'] {
+    grid-area: upload;
+    height: fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-top: auto;
+    color: black;
+    font-family: 'Roboto-Mono', sans-serif;
+    /* border: 2px solid white; */
+}
+
+.profile-container input[type='text'] {
+    grid-area: name;
+    font-family: 'Roboto Mono', monospace;
+    width: fit-content;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 1.6rem;
+    color: black;
+    border: none;
+}
+
+.profile-container p {
+    grid-area: email;
+    font-size: 1.4rem;
+    color: gray;
+    font-family: 'Raleway', sans-serif;
+}
+
 /* ALL POSTS */
 .all-posts {
     display: grid;
@@ -197,6 +261,26 @@ body {
 
     .auth-form h2 {
         font-size: 3rem;
+    }
+
+    .profile-container {
+        grid-template-areas: 
+        'header'
+        'image'
+        'upload'
+        'name'
+        'email';
+        width: 90%;
+    }
+
+    .profile-container h1 {
+        font-size: 2.5rem;
+        margin-left: 0;
+    }
+
+    .profile-container input[type='file'] {
+        margin-left: 0;
+        margin-right: auto;
     }
 
     .upload-form {

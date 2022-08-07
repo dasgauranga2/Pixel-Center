@@ -4,7 +4,7 @@ import { BrowserRouter,Routes,Route,Link }  from 'react-router-dom';
 import AuthForm from './components/AuthForm';
 import Home from './components/Home';
 import Upload from './components/Upload';
-
+import Profile from './components/Profile';
 
 function App() {
 
@@ -22,6 +22,9 @@ function App() {
 
 			{/* route for post upload */}
 			<Route exact path='/upload' element={<Upload />} />
+
+			{/* route for user profile */}
+			<Route exact path='/profile' element={<Profile />} />
 		</Routes>
 		
 	</BrowserRouter>
