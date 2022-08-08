@@ -16,21 +16,23 @@ function Home(props) {
     // current user state
     const [current_user, setCurrentUser] = useState(null);
     // all posts
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
-    // check if user is logged in
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-            // set the current user
-            setCurrentUser(user);
-            console.log("USER");
-		} 
-		else {
-            // if user is not logged in naivigate to sign in page
-			navigate('/signin');
-            console.log("NO USER");
-		}
-	});
+    // FOLLOWING BLOCK OF CODE CHECKS IF USER IS LOGGED IN
+    // RUNNING IT WILL CAUSE AN INFINITE LOOP
+    // // check if user is logged in
+	// onAuthStateChanged(auth, (user) => {
+	// 	if (user) {
+    //         // set the current user
+    //         setCurrentUser(user);
+    //         console.log("USER");
+	// 	} 
+	// 	else {
+    //         // if user is not logged in naivigate to sign in page
+	// 		navigate('/signin');
+    //         console.log("NO USER");
+	// 	}
+	// });
 
     // 'useEffect' hook is used to perform side effects in the component
     // the function will run after the component jsx renders for the first time and then
@@ -64,7 +66,7 @@ function Home(props) {
             auth.signOut();
         }}>SIGN OUT</button>
         <div className='all-posts'>
-            { posts.map((post) => <Post key={post.name} post={post} />) }
+            { posts===null ? null : posts.map((post) => <Post key={post.name} post={post} />) }
         </div>
     </div>
 }
