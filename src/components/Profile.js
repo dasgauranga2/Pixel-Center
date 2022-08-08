@@ -43,21 +43,23 @@ function Profile(props) {
 
     // function to get user profile
     function get_profile() {
-        // get firebase database reference
-        const database_ref = d_ref(db,`USERS/${current_user.uid}`);
-        // get user data
-        onValue(database_ref, (snapshot) => {
-            // check if data exists
-            if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
-                // set user name
-                name_ref.current.value = snapshot.val().name;
-                // check if user profile image exists
-                if (snapshot.val().hasOwnProperty('image_url')) {
-                    // set user profile image
-                    setProfileImage(snapshot.val().image_url);
+        if (!(current_user===null)) {
+            // get firebase database reference
+            const database_ref = d_ref(db,`USERS/${current_user.uid}`);
+            // get user data
+            onValue(database_ref, (snapshot) => {
+                // check if data exists
+                if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
+                    // set user name
+                    name_ref.current.value = snapshot.val().name;
+                    // check if user profile image exists
+                    if (snapshot.val().hasOwnProperty('image_url')) {
+                        // set user profile image
+                        setProfileImage(snapshot.val().image_url);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     return <div className='profile-container'>
