@@ -30,6 +30,8 @@ function Profile(props) {
 		if (user) {
             // set the current user
             setCurrentUser(user);
+            // get the user profile
+            get_profile();
             console.log("USER");
 		} 
 		else {
@@ -39,28 +41,24 @@ function Profile(props) {
 		}
 	});
 
-    // 'useEffect' hook is used to perform side effects in the component
-    // the function will run after the component jsx renders for the first time and then
-    // every time one of the dependencies change
-    useEffect(() => {
-        if (current_user !== null) {
-            // get firebase database reference
-            const database_ref = d_ref(db,`USERS/${current_user.uid}`);
-            // get user data
-            onValue(database_ref, (snapshot) => {
-                // check if data exists
-                if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
-                    // set user name
-                    name_ref.current.value = snapshot.val().name;
-                    // check if user profile image exists
-                    if (snapshot.val().hasOwnProperty('image_url')) {
-                        // set user profile image
-                        setProfileImage(snapshot.val().image_url);
-                    }
+    // function to get user profile
+    function get_profile() {
+        // get firebase database reference
+        const database_ref = d_ref(db,`USERS/${current_user.uid}`);
+        // get user data
+        onValue(database_ref, (snapshot) => {
+            // check if data exists
+            if (!(snapshot.val()===null) && !(snapshot.val()===undefined)) {
+                // set user name
+                name_ref.current.value = snapshot.val().name;
+                // check if user profile image exists
+                if (snapshot.val().hasOwnProperty('image_url')) {
+                    // set user profile image
+                    setProfileImage(snapshot.val().image_url);
                 }
-            });
-        }
-    });
+            }
+        });
+    }
 
     return <div className='profile-container'>
         <h1>USER PROFILE</h1>

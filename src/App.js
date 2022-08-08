@@ -5,10 +5,13 @@ import AuthForm from './components/AuthForm';
 import Home from './components/Home';
 import Upload from './components/Upload';
 import Profile from './components/Profile';
+import Navbar from './components/Navbar';
 
 function App() {
 
     return <BrowserRouter>
+
+		<Navbar />
 	
 		<Routes>
 			{/* route for user signup */}

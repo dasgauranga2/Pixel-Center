@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './styles/index.css';
 import './styles/Post.css';
+import './styles/Navbar.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
