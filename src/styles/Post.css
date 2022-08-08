@@ -29,28 +29,51 @@ body {
 }
 
 /* POST CONTAINER */
-.post-container  {
-    display: grid;
-    grid-template-areas: 
-    'title title title'
-    'prev-button image next-button';
+.post-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
     background-color: white;
-    grid-template-columns: 1fr auto 1fr;
     border-radius: 15px;
-    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .post-container h1 {
-    grid-area: title;
+    padding-left: 50px;
+    color: black;
 }
 
-.post-container img {
-    grid-area: image;
+.user-row {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+}
+
+.post-container h2 {
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    /* border: 2px solid red; */
+}
+
+.user-row img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.image-row {
+    display: grid;
+    grid-template-columns: 50px auto 50px;
+}
+
+.image-row img {
     max-width: 100%;
-    /* border: 2px solid black; */
 }
 
-.post-container button:nth-child(2),button:nth-child(3) {
+.post-container button {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 1.2rem;
@@ -64,17 +87,14 @@ body {
     border: none;
 }
 
-.post-container button:nth-child(2) {
+.post-container button:nth-child(1) {
     margin-left: auto;
-    margin-right: 15px;
+    margin-right: 10px;
     transform: rotate(180deg);
-    grid-area: prev-button;
 }
 
 .post-container button:nth-child(3) {
-    margin-right: auto;
-    margin-left: 15px;
-    grid-area: next-button;
+    margin-left: 10px;
 }
 
 /* MEDIA QUERIES */
@@ -83,5 +103,25 @@ body {
 
     .all-posts {
         width: 85%;
+    }
+
+    .image-row {
+        grid-template-columns: 40px auto 40px;
+    }
+
+    .user-row {
+        padding-left: 40px;
+    }
+
+    .post-container h1 {
+        padding-left: 40px;
+    }
+
+    .post-container button:nth-child(1) {
+        margin-right: 5px;
+    }
+    
+    .post-container button:nth-child(3) {
+        margin-left: 5px;
     }
 }

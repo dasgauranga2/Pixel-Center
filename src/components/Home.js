@@ -45,14 +45,15 @@ function Home(props) {
                 // array of posts
                 const posts_array = [];
                 // get each user's posts
-                Object.values(snapshot.val()).forEach((user_post) => {
+                for(let [user,user_posts] of Object.entries(snapshot.val())) {
                     // get each post
-                    Object.values(user_post).forEach((post) => {
+                    Object.values(user_posts).forEach((post) => {
+                        post['user'] = user;
                         posts_array.push(post);
                         console.log(posts_array);
                         setPosts(posts_array);
                     });
-                });
+                }
             }
         });
     },[]);
