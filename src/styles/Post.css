@@ -97,6 +97,10 @@ body {
     margin-left: 10px;
 }
 
+.comment-row {
+    color: black;
+}
+
 /* MEDIA QUERIES */
 /* FOR SMARTPHONES */
 @media(max-width:500px) {

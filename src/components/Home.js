@@ -49,14 +49,29 @@ function Home(props) {
                 // get each user's posts
                 for(let [user,user_posts] of Object.entries(snapshot.val())) {
                     // get each post
-                    Object.values(user_posts).forEach((post) => {
+                    for(let [post_id,post] of Object.entries(user_posts)) {
                         post['user'] = user;
+                        post['id'] = post_id;
                         posts_array.push(post);
                         console.log(posts_array);
                         setPosts(posts_array);
-                    });
+                    }
                 }
             }
+        });
+
+        // check if user is logged in
+        onAuthStateChanged(auth, (user) => {
+        	if (user) {
+                // set the current user
+                setCurrentUser(user);
+                console.log("USER");
+        	} 
+        	else {
+                // if user is not logged in naivigate to sign in page
+        		navigate('/signin');
+                console.log("NO USER");
+        	}
         });
     },[]);
 
@@ -66,7 +81,7 @@ function Home(props) {
             auth.signOut();
         }}>SIGN OUT</button>
         <div className='all-posts'>
-            { posts===null ? null : posts.map((post) => <Post key={post.name} post={post} />) }
+            { posts===null ? null : posts.map((post) => <Post key={post.name} post={post} current_user={current_user} />) }
         </div>
     </div>
 }

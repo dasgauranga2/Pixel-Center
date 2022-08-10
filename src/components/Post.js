@@ -13,12 +13,16 @@ function Post(props) {
     const post = props.post;
     // array of post image tags
     const image_tags = props.post.image_urls.map((url) => <img src={url} />);
+    // currently logged in user
+    const [current_user,setCurrentUser] = useState(null);
     // post current image index
     const [image_index,setImageIndex] = useState(0);
     // post user name
     const [user_name,setUserName] = useState(null);
     // post user image
     const [user_image,setUserImage] = useState("https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png");
+    // ref for comment
+    const comment_ref = useRef(null);
 
     // 'useEffect' hook is used to perform side effects in the component
 	// such as fetching data, interacting with dom, timers, making http requests
@@ -67,6 +71,30 @@ function Post(props) {
                     setImageIndex(image_index+1);
                 }
             }}>&#10148;</button>
+        </div>
+        <div className='comment-row'>
+            {/* display comments */}
+            <ul>
+                { post.hasOwnProperty('comments') &&
+                    Object.values(post.comments).map((comment,i) => <li key={i} >{ comment.text } -- { comment.user }</li>) 
+                }
+            </ul>
+            {/* form to add comment */}
+            <form>
+                <input type="text" ref={comment_ref} />
+                <input type="submit" onClick={(event) => {
+                    event.preventDefault();
+
+                    // get firebase database reference
+                    const database_ref = push(d_ref(db,`POSTS/${post.user}/${post.id}/comments`));
+
+                    // add comment to the post
+                    set(database_ref, {
+                        text: comment_ref.current.value,
+                        user: props.current_user.uid
+                    });
+                }} />
+            </form>
         </div>
     </div>
 }
