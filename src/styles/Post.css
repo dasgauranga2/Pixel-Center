@@ -99,6 +99,27 @@ body {
 
 .comment-row {
     color: black;
+    margin-left: 50px;
+    margin-right: 50px;
+    /* border: 2px solid black; */
+}
+
+.comment-row li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+.comment-row li img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.comment-row li p {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    /* border: 2px solid red; */
 }
 
 /* MEDIA QUERIES */
@@ -127,5 +148,10 @@ body {
     
     .post-container button:nth-child(3) {
         margin-left: 5px;
+    }
+
+    .comment-row {
+        margin-left: 40px;
+        margin-right: 40px;
     }
 }

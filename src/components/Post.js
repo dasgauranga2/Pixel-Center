@@ -1,6 +1,6 @@
 import React, { useRef,useEffect, useState } from 'react';
 import { getAuth,signOut,onAuthStateChanged } from 'firebase/auth';
-import { ref as d_ref,set,push,onValue } from 'firebase/database';
+import { ref as d_ref,set,push,onValue,get } from 'firebase/database';
 import { useNavigate }  from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { auth,db,storage } from '../firebase-config';
@@ -13,8 +13,8 @@ function Post(props) {
     const post = props.post;
     // array of post image tags
     const image_tags = props.post.image_urls.map((url) => <img src={url} />);
-    // currently logged in user
-    const [current_user,setCurrentUser] = useState(null);
+    // all user details
+    const [user_details,setUserDetails] = useState(new Map());
     // post current image index
     const [image_index,setImageIndex] = useState(0);
     // post user name
@@ -45,7 +45,17 @@ function Post(props) {
                 }
             }
         });
-	});
+
+        // get firebase database reference
+        const users_ref = d_ref(db,"USERS/");
+        // get all users' data
+        get(users_ref).then((snapshot) => {
+            for(let [user_id,user_detail] of Object.entries(snapshot.val())) {
+                console.log(user_id,user_detail);
+                setUserDetails(new Map(user_details.set(user_id,user_detail)));
+            }
+        });
+	},[]);
 
     return <div className='post-container'>
         {/* post title */}
@@ -76,7 +86,13 @@ function Post(props) {
             {/* display comments */}
             <ul>
                 { post.hasOwnProperty('comments') &&
-                    Object.values(post.comments).map((comment,i) => <li key={i} >{ comment.text } -- { comment.user }</li>) 
+                    Object.values(post.comments).map((comment,i) => 
+                    <li key={i}>
+                        <img src={ user_details.has(comment.user) ? user_details.get(comment.user).image_url : "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" } />
+                        <p>{ user_details.has(comment.user) ? user_details.get(comment.user).name : "" }</p>
+                        {/* <h2>HELLO</h2> */}
+                        <p>{ comment.text }</p>
+                    </li>) 
                 }
             </ul>
             {/* form to add comment */}
