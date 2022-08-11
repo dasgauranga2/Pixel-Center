@@ -51,7 +51,7 @@ function Post(props) {
         // get all users' data
         get(users_ref).then((snapshot) => {
             for(let [user_id,user_detail] of Object.entries(snapshot.val())) {
-                console.log(user_id,user_detail);
+                //console.log(user_id,user_detail);
                 setUserDetails(new Map(user_details.set(user_id,user_detail)));
             }
         });
@@ -110,6 +110,9 @@ function Post(props) {
                         text: comment_ref.current.value,
                         user: props.current_user.uid
                     });
+
+                    // clear the input text field
+                    comment_ref.current.value = "";
                 }} />
             </form>
         </div>
