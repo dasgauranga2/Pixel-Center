@@ -89,16 +89,17 @@ function Post(props) {
                     Object.values(post.comments).map((comment,i) => 
                     <li key={i}>
                         <img src={ user_details.has(comment.user) ? user_details.get(comment.user).image_url : "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" } />
-                        <p>{ user_details.has(comment.user) ? user_details.get(comment.user).name : "" }</p>
-                        {/* <h2>HELLO</h2> */}
-                        <p>{ comment.text }</p>
+                        <div className='user-text-detail'>
+                            <p>{ user_details.has(comment.user) ? user_details.get(comment.user).name : "" }</p>
+                            <p>{ comment.text }</p>
+                        </div>
                     </li>) 
                 }
             </ul>
             {/* form to add comment */}
             <form>
                 <input type="text" ref={comment_ref} />
-                <input type="submit" onClick={(event) => {
+                <input type="submit" value="COMMENT" onClick={(event) => {
                     event.preventDefault();
 
                     // get firebase database reference
