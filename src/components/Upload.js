@@ -18,6 +18,8 @@ function Upload(props) {
     const name_ref = useRef();
     // ref for post images/files
     const image_ref = useRef();
+    // ref for warning message
+    const warning_ref = useRef(null);
 
     // check if user is logged in
 	onAuthStateChanged(auth, (user) => {
@@ -40,6 +42,7 @@ function Upload(props) {
 
     return <form className='upload-form'>
         <h2>UPLOAD POST</h2>
+        <p className='warning-message' ref={warning_ref}></p>
         <input type="text" placeholder='Post Name' ref={name_ref} />
         <input multiple type="file" ref={image_ref} />
         <input value="UPLOAD" type="submit" onClick={(event) => {
@@ -49,25 +52,33 @@ function Upload(props) {
             const database_ref = push(d_ref(db,`POSTS/${current_user.uid}`));
             // array of image downlad urls
             const urls = [];
+            // get the post name
+            const post_name = name_ref.current.value;
             
-            // iterate through the image files
-            Array.from(image_ref.current.files).forEach((file) => {
-                // get firebase storage reference
-                const storage_ref = s_ref(storage,`POSTS/${current_user.uid}/${name_ref.current.value}/${file.name}`);
-                // upload the image file
-                uploadBytes(storage_ref,file).then((snapshot) => {
-                    // get the download url
-                    getDownloadURL(storage_ref)
-                        .then((url) => {
-                            urls.push(url);
-                            // add post data to database
-                            set(database_ref, {
-                                name: name_ref.current.value,
-                                image_urls: urls
+            if (!(post_name.trim().length === 0)) {
+                // iterate through the image files
+                Array.from(image_ref.current.files).forEach((file) => {
+                    // get firebase storage reference
+                    const storage_ref = s_ref(storage,`POSTS/${current_user.uid}/${name_ref.current.value}/${file.name}`);
+                    // upload the image file
+                    uploadBytes(storage_ref,file).then((snapshot) => {
+                        // get the download url
+                        getDownloadURL(storage_ref)
+                            .then((url) => {
+                                urls.push(url);
+                                // add post data to database
+                                set(database_ref, {
+                                    name: post_name,
+                                    image_urls: urls
+                                });
+                                warning_ref.current.innerText = "Upload Success";
                             });
-                        });
+                    });
                 });
-            });
+            }
+            else {
+                warning_ref.current.innerText = "Empty Post Name";
+            }
 
             // // after upload go to home page
 			// navigate('/');

@@ -1,0 +1,104 @@
+/* import google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: darkblue;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CSS VARIABLES */
+:root {
+    /* --headercolor: rgb(0, 0, 182); */
+}
+
+/* UPLOAD */
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 100px auto;
+    width: 450px;
+    background: white;
+    border-radius: 15px;
+    border: 2px solid white;
+}
+
+.upload-form h2 {
+    margin: 50px auto;
+    font-size: 3rem;
+    color: rgb(20, 150, 20);
+}
+
+.warning-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    /* border: 2px solid red; */
+}
+
+.upload-form input[type='text'] {
+    font-size: 1.2rem;
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    border-bottom: 2px solid rgb(200,200,200);
+}
+
+.upload-form input[type='text']:focus {
+    outline: none;
+}
+
+::-webkit-file-upload-button {
+    color: rgb(80, 80, 225);
+    font-size: 1.1rem;
+    border-radius: 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 5px 15px;
+    background-color: white;
+    margin-right: 15px;
+    border: 2px solid rgb(80, 80, 225);
+}
+
+.upload-form input[type='file'] {
+    color: rgb(80, 80, 225);
+    font-size: 1.1rem;
+}
+
+.upload-form input[type='submit'] {
+    width: fit-content;
+    margin: 30px auto;
+    margin-bottom: 50px;
+    padding: 10px 30px;
+    border-radius: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color: rgb(80, 80, 225);
+    background-color: white;
+    font-size: 1.35rem;
+    cursor: pointer;
+    border: 2px solid rgb(80, 80, 225);
+}
+
+/* MEDIA QUERIES */
+/* FOR SMARTPHONES */
+@media(max-width:500px) {
+
+    .upload-form {
+        width: 80%;
+    }
+}

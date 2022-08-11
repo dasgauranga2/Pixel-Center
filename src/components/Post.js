@@ -108,17 +108,23 @@ function Post(props) {
                 <input type="submit" value="COMMENT" onClick={(event) => {
                     event.preventDefault();
 
-                    // get firebase database reference
-                    const database_ref = push(d_ref(db,`POSTS/${post.user}/${post.id}/comments`));
+                    // get comment text
+                    const comment_text = comment_ref.current.value;
 
-                    // add comment to the post
-                    set(database_ref, {
-                        text: comment_ref.current.value,
-                        user: props.current_user.uid
-                    });
+                    // check if comment is empty
+                    if (!(comment_text.trim().length===0)) {
+                        // get firebase database reference
+                        const database_ref = push(d_ref(db,`POSTS/${post.user}/${post.id}/comments`));
 
-                    // clear the input text field
-                    comment_ref.current.value = "";
+                        // add comment to the post
+                        set(database_ref, {
+                            text: comment_text,
+                            user: props.current_user.uid
+                        });
+
+                        // clear the input text field
+                        comment_ref.current.value = "";
+                    }
                 }} />
             </form>
         </div>

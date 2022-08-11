@@ -19,70 +19,6 @@ body {
     /* --headercolor: rgb(0, 0, 182); */
 }
 
-/* UPLOAD */
-.upload-form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 100px auto;
-    width: 450px;
-    background: white;
-    border-radius: 15px;
-    border: 2px solid white;
-}
-
-.upload-form h2 {
-    margin: 50px auto;
-    font-size: 3rem;
-    color: rgb(20, 150, 20);
-}
-
-.upload-form input[type='text'] {
-    font-size: 1.2rem;
-    padding: 10px;
-    border: none;
-    margin-bottom: 20px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    border-bottom: 2px solid rgb(200,200,200);
-}
-
-.upload-form input[type='text']:focus {
-    outline: none;
-}
-
-::-webkit-file-upload-button {
-    color: rgb(80, 80, 225);
-    font-size: 1.1rem;
-    border-radius: 15px;
-    cursor: pointer;
-    border-radius: 15px;
-    padding: 5px 15px;
-    background-color: white;
-    margin-right: 15px;
-    border: 2px solid rgb(80, 80, 225);
-}
-
-.upload-form input[type='file'] {
-    color: rgb(80, 80, 225);
-    font-size: 1.1rem;
-}
-
-.upload-form input[type='submit'] {
-    width: fit-content;
-    margin: 30px auto;
-    margin-bottom: 50px;
-    padding: 10px 30px;
-    border-radius: 15px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: rgb(80, 80, 225);
-    background-color: white;
-    font-size: 1.35rem;
-    cursor: pointer;
-    border: 2px solid rgb(80, 80, 225);
-}
-
 /* PROFILE */
 .profile-container {
     display: grid;
@@ -170,9 +106,5 @@ body {
     .profile-container input[type='file'] {
         margin-left: 0;
         margin-right: auto;
-    }
-
-    .upload-form {
-        width: 80%;
     }
 }
