@@ -57,7 +57,7 @@ function Post(props) {
                 setUserDetails(new Map(user_details.set(user_id,user_detail)));
             }
         });
-	},[]);
+	});
 
     return <div className='post-container'>
         {/* post title */}
