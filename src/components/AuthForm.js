@@ -59,6 +59,8 @@ function AuthForm(props) {
 
     // set background color
     document.body.style.background = 'rgb(100,140,240)';
+    // set title
+    document.title = "Pixel Center";
 
     if (props.header === "SIGNIN") {
         return <div className='auth-container'>

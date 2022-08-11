@@ -35,6 +35,8 @@ function Upload(props) {
 
     // set background color
     document.body.style.background = 'rgb(35,210,20)';
+    // set title
+    document.title = "Upload Post";
 
     return <form className='upload-form'>
         <h2>UPLOAD POST</h2>

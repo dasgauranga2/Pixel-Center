@@ -25,20 +25,27 @@ function Profile(props) {
     // all posts
     const [posts, setPosts] = useState([]);
 
-    // check if user is logged in
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-            // set the current user
-            setCurrentUser(user);
-            // get the user profile
-            get_profile();
-            console.log("USER");
-		} 
-		else {
-            // if user is not logged in naivigate to sign in page
-			navigate('/signin');
-            console.log("NO USER");
-		}
+    useEffect(() => {
+
+        // check if user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // set the current user
+                setCurrentUser(user);
+                // get the user profile
+                get_profile();
+                console.log("USER");
+            } 
+            else {
+                // if user is not logged in naivigate to sign in page
+                navigate('/signin');
+                console.log("NO USER");
+            }
+        });
+
+        if(name_ref !== null) {
+            document.title = `${name_ref.current.value} Profile`;   
+        }
 	});
 
     // function to get user profile
@@ -61,6 +68,9 @@ function Profile(props) {
             });
         }
     }
+
+    // set background color
+    document.body.style.background = 'rgb(250,100,100)';
 
     return <div className='profile-container'>
         <h1>USER PROFILE</h1>

@@ -75,11 +75,16 @@ function Home(props) {
         });
     },[]);
 
+    // set background color
+    document.body.style.background = 'rgb(150,100,250)';
+    // set title
+    document.title = "Pixel Center - Home";
+
     return <div>
-        <h1>HOME PAGE</h1>
+        {/* <h1>HOME PAGE</h1>
         <button onClick={() => {
             auth.signOut();
-        }}>SIGN OUT</button>
+        }}>SIGN OUT</button> */}
         <div className='all-posts'>
             { posts===null ? null : posts.map((post) => <Post key={post.name} post={post} current_user={current_user} />) }
         </div>

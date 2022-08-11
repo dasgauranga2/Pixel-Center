@@ -23,7 +23,7 @@ body {
 .all-posts {
     display: grid;
     gap: 50px;
-    margin: 0 auto;
+    margin: 50px auto;
     width: 500px;
     /* border: 2px solid white; */
 }
