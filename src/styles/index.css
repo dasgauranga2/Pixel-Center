@@ -19,74 +19,6 @@ body {
     /* --headercolor: rgb(0, 0, 182); */
 }
 
-/* AUTHENTICATION FORM */
-.auth-container {
-    display: flex;
-    flex-direction: column;
-    width: 450px;
-    margin: 50px auto;
-    /* border: 2px solid black; */
-}
-
-.auth-container > a {
-    text-decoration: none;
-    width: fit-content;
-    padding: 10px 20px;
-    border-radius: 15px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: rgb(80, 80, 225);
-    background-color: white;
-    font-size: 1.35rem;
-    border: none;
-}
-
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 15px auto;
-    width: 100%;
-    background: white;
-    border-radius: 15px;
-    border: 2px solid white;
-}
-
-.auth-form h2 {
-    margin: 50px auto;
-    font-size: 3.5rem;
-    color: rgb(0, 0, 182);
-}
-
-.auth-form input[type='text'] {
-    font-size: 1.2rem;
-    padding: 10px;
-    border: none;
-    margin-bottom: 20px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    border-bottom: 2px solid rgb(200,200,200);
-}
-
-.auth-form input[type='text']:focus {
-    outline: none;
-}
-
-.auth-form input[type='submit'] {
-    width: fit-content;
-    margin: 30px auto;
-    margin-bottom: 50px;
-    padding: 10px 30px;
-    border-radius: 15px;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: rgb(80, 80, 225);
-    background-color: white;
-    font-size: 1.35rem;
-    cursor: pointer;
-    border: 2px solid rgb(80, 80, 225);
-}
-
 /* UPLOAD */
 .upload-form {
     display: flex;
@@ -219,14 +151,6 @@ body {
 /* MEDIA QUERIES */
 /* FOR SMARTPHONES */
 @media(max-width:500px) {
-    
-    .auth-container {
-        width: 80%;
-    }
-
-    .auth-form h2 {
-        font-size: 3rem;
-    }
 
     .profile-container {
         grid-template-areas: 

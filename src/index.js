@@ -5,6 +5,7 @@ import App from './App';
 import './styles/index.css';
 import './styles/Post.css';
 import './styles/Navbar.css';
+import './styles/AuthForm.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
