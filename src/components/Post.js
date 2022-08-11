@@ -21,6 +21,8 @@ function Post(props) {
     const [user_name,setUserName] = useState(null);
     // post user image
     const [user_image,setUserImage] = useState("https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png");
+    // show/hide comments
+    const [toggle_comments,setToggleComments] = useState(false);
     // ref for comment
     const comment_ref = useRef(null);
 
@@ -82,7 +84,11 @@ function Post(props) {
                 }
             }}>&#10148;</button>
         </div>
-        <div className='comment-row'>
+        {/* button to show/hide comments */}
+        <button className='toggle-comments' onClick={() => {
+            setToggleComments(!toggle_comments);
+        }}>{ toggle_comments ? "HIDE COMMENTS" : "SHOW COMMENTS" }</button>
+        <div className='comment-row' style={{display: toggle_comments ? 'block' : 'none'}}>
             {/* display comments */}
             <ul>
                 { post.hasOwnProperty('comments') &&

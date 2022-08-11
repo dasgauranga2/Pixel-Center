@@ -73,7 +73,7 @@ body {
     max-width: 100%;
 }
 
-.post-container button {
+.image-row button {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 1.2rem;
@@ -87,14 +87,27 @@ body {
     border: none;
 }
 
-.post-container button:nth-child(1) {
+.image-row button:nth-child(1) {
     margin-left: auto;
     margin-right: 10px;
     transform: rotate(180deg);
 }
 
-.post-container button:nth-child(3) {
+.image-row button:nth-child(3) {
     margin-left: 10px;
+}
+
+.toggle-comments {
+    margin-left: 50px;
+    width: fit-content;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: white;
+    border-radius: 15px;
+    color: blue;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 2px solid blue;
 }
 
 .comment-row {
