@@ -55,9 +55,10 @@ function Post(props) {
             for(let [user_id,user_detail] of Object.entries(snapshot.val())) {
                 //console.log(user_id,user_detail);
                 setUserDetails(new Map(user_details.set(user_id,user_detail)));
+                console.log(user_details);
             }
         });
-	});
+	},[]);
 
     return <div className='post-container'>
         {/* post title */}
@@ -94,7 +95,7 @@ function Post(props) {
                 { post.hasOwnProperty('comments') &&
                     Object.values(post.comments).map((comment,i) => 
                     <li key={i}>
-                        <img src={ user_details.has(comment.user) ? user_details.get(comment.user).image_url : "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" } />
+                        <img src={ user_details.has(comment.user) && user_details.get(comment.user).hasOwnProperty('image_url') ? user_details.get(comment.user).image_url : "https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png" } />
                         <div className='user-text-detail'>
                             <p>{ user_details.has(comment.user) ? user_details.get(comment.user).name : "" }</p>
                             <p>{ comment.text }</p>
