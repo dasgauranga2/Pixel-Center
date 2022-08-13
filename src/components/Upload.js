@@ -55,7 +55,13 @@ function Upload(props) {
             // get the post name
             const post_name = name_ref.current.value;
             
-            if (!(post_name.trim().length === 0)) {
+            if (post_name.trim().length === 0) {
+                warning_ref.current.innerText = "Empty Post Name";
+            }
+            else if(image_ref.current.files.length === 0) {
+                warning_ref.current.innerText = "No images selected";
+            }
+            else {
                 // iterate through the image files
                 Array.from(image_ref.current.files).forEach((file) => {
                     // get firebase storage reference
@@ -75,9 +81,6 @@ function Upload(props) {
                             });
                     });
                 });
-            }
-            else {
-                warning_ref.current.innerText = "Empty Post Name";
             }
 
             // // after upload go to home page

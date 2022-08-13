@@ -55,7 +55,6 @@ function Post(props) {
             for(let [user_id,user_detail] of Object.entries(snapshot.val())) {
                 //console.log(user_id,user_detail);
                 setUserDetails(new Map(user_details.set(user_id,user_detail)));
-                console.log(user_details);
             }
         });
 	},[]);
