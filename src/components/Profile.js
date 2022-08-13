@@ -20,6 +20,8 @@ function Profile(props) {
     const [profile_image, setProfileImage] = useState("https://www.kindpng.com/picc/m/495-4952535_create-digital-profile-icon-blue-user-profile-icon.png");
     // ref for user name
 	const name_ref = useRef(null);
+    // ref for file input
+	const file_ref = useRef(null);
     // timer to detect when user stops typing
     let timer = null;
     // all posts
@@ -77,7 +79,7 @@ function Profile(props) {
         {/* user profile image */}
         <img src={profile_image} />
         {/* user profile image upload */}
-        <input type="file" onChange={(event) => {
+        <input type="file" ref={file_ref} onChange={(event) => {
             // get the image file
             const image_file = event.target.files[0];
 
@@ -102,6 +104,10 @@ function Profile(props) {
             }
             
         }}/>
+        {/* button for user profile image upload */}
+        <button onClick={() => {
+            file_ref.current.click();
+        }}>EDIT PROFILE IMAGE</button>
         {/* user profile name */}
         <input type="text" ref={name_ref} onChange={(event) => {
             // use a timer to detect when user stops typing
