@@ -70,7 +70,7 @@ function Post(props) {
         </div>
         <div className='image-row'>
             {/* previous image button */}
-            <button onClick={() => {
+            <button style={{pointerEvents: post.image_urls.length>1 ? 'auto' : 'none' , opacity: post.image_urls.length>1 ? '1' : '0' }} onClick={() => {
                 if (image_index !== 0) {
                     setImageIndex(image_index-1);
                 }
@@ -78,7 +78,7 @@ function Post(props) {
             {/* current image */}
             { image_tags[image_index] }
             {/* next image button */}
-            <button onClick={() => {
+            <button style={{pointerEvents: post.image_urls.length>1 ? 'auto' : 'none' , opacity: post.image_urls.length>1 ? '1' : '0' }} onClick={() => {
                 if (image_index !== image_tags.length-1) {
                     setImageIndex(image_index+1);
                 }
