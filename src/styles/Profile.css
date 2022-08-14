@@ -28,7 +28,7 @@ body {
     'name name'
     'email email';
     width: 500px;
-    margin: 100px auto;
+    margin: 50px auto 20px;
     row-gap: 10px;
     border-radius: 20px;
     padding: 15px;
@@ -91,6 +91,16 @@ body {
     font-size: 1.4rem;
     color: gray;
     font-family: 'Raleway', sans-serif;
+}
+
+.user-posts-header {
+    text-align: center;
+    font-size: 2.5rem;
+    /* border: 2px solid white; */
+}
+
+.user-posts {
+    margin-top: 20px;
 }
 
 /* MEDIA QUERIES */

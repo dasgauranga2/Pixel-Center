@@ -25,7 +25,7 @@ function Profile(props) {
     // timer to detect when user stops typing
     let timer = null;
     // all posts
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     useEffect(() => {
 
@@ -37,6 +37,8 @@ function Profile(props) {
                 // get the user profile
                 get_profile();
                 console.log("USER");
+                // get the user posts
+                get_posts();
             } 
             else {
                 // if user is not logged in naivigate to sign in page
@@ -48,7 +50,7 @@ function Profile(props) {
         if(name_ref !== null) {
             document.title = `${name_ref.current.value} Profile`;   
         }
-	});
+	},[current_user]);
 
     // function to get user profile
     function get_profile() {
@@ -71,10 +73,36 @@ function Profile(props) {
         }
     }
 
+    // function to get user posts
+    function get_posts() {
+        if(current_user !== null) {
+            // get all the user posts
+            // get firebase database reference
+            const database_ref = d_ref(db,`POSTS/${current_user.uid}/`);
+            // get posts data
+            onValue(database_ref, (snapshot) => {
+                // check if data exists
+                if (!(snapshot.val() === null) && !(snapshot.val() === undefined)) {
+                    // array of posts
+                    const posts_array = [];
+                    // get each user's posts
+                    for(let [post_id,user_post] of Object.entries(snapshot.val())) {
+                        user_post['user'] = current_user.uid;
+                        user_post['id'] = post_id;
+                        posts_array.push(user_post);
+                        console.log(posts_array);
+                        setPosts(posts_array);
+                    }
+                }
+            });
+        }
+    }
+
     // set background color
     document.body.style.background = 'rgb(250,100,100)';
 
-    return <div className='profile-container'>
+    return <React.Fragment>
+        <div className='profile-container'>
         <h1>USER PROFILE</h1>
         {/* user profile image */}
         <img src={profile_image} />
@@ -127,6 +155,11 @@ function Profile(props) {
             { posts.map((post) => <Post key={post.name} post={post} />) }
         </div> */}
     </div>
+    <h2 className='user-posts-header'>POSTS</h2>
+    <div className='all-posts user-posts'>
+        { posts===null ? null : posts.map((post) => <Post key={post.name} post={post} current_user={current_user} />) }
+    </div>
+    </React.Fragment>
 }
 
 // // default values for props if no data is given
